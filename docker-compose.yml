@@ -1,0 +1,20 @@
+version: '3'
+
+networks:
+  pyweb:
+    driver: overlay
+
+services:
+  web:
+    image: nathanleclaire/pyweb
+    ports:
+      - "5000:5000"
+    networks:
+      - pyweb
+    volumes:
+      - .:/code
+
+  redis:
+    image: redis
+    networks:
+      - pyweb
